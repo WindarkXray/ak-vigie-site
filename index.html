@@ -1682,46 +1682,67 @@
 
         .team-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
             transition: all 0.3s ease;
-            border: 2px solid rgba(212, 169, 86, 0.2);
+            border: 1px solid rgba(212, 169, 86, 0.2);
         }
 
         .team-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(212, 169, 86, 0.25);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.12);
             border-color: var(--accent);
         }
 
         .team-avatar {
             width: 100%;
-            height: 220px;
-            background: linear-gradient(135deg, var(--accent) 0%, #8b7043 100%);
+            padding: 36px 0 24px;
+            background: linear-gradient(160deg, #1a1a1a 0%, #2d2d2d 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 80px;
+        }
+
+        .team-initial {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 1.5px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
         }
 
         .team-info {
-            padding: 25px;
+            padding: 24px 25px 28px;
             text-align: center;
         }
 
         .team-name {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .team-role {
-            font-size: 14px;
+            font-size: 11.5px;
             color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .team-divider {
+            width: 28px;
+            height: 1px;
+            background: rgba(212, 169, 86, 0.4);
+            margin: 0 auto 16px;
         }
 
         .team-desc {
@@ -1731,61 +1752,94 @@
         }
 
         .team-philosophy {
-            background: linear-gradient(135deg, rgba(212, 169, 86, 0.1) 0%, rgba(212, 169, 86, 0.05) 100%);
-            border-left: 4px solid var(--accent);
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 50px;
+            background: transparent;
+            border-left: none;
+            padding: 0 0 45px;
+            margin-bottom: 55px;
+            text-align: center;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+            border-bottom: 1px solid rgba(212, 169, 86, 0.25);
+        }
+
+        .philosophy-mark {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 60px;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: -8px;
         }
 
         .team-philosophy h3 {
-            color: var(--primary);
-            font-size: 22px;
-            margin-bottom: 15px;
+            color: var(--accent);
+            font-size: 14px;
+            margin-bottom: 20px;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .team-philosophy p {
             color: #555;
             font-size: 16px;
-            line-height: 1.8;
+            line-height: 1.85;
             margin-bottom: 15px;
         }
 
-        .team-philosophy p:last-child {
+        .team-philosophy p:last-of-type {
             margin-bottom: 0;
+        }
+
+        .section-kicker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 14px;
         }
 
         .team-values {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(212, 169, 86, 0.2);
         }
 
         .value-item {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
+            background: transparent;
+            padding: 30px 20px 4px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: none;
+            border-right: 1px solid rgba(212, 169, 86, 0.15);
         }
 
-        .value-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
+        .value-item:last-child {
+            border-right: none;
+        }
+
+        .value-mark {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 19px;
+            color: var(--accent);
+            margin-bottom: 14px;
+            letter-spacing: 1px;
         }
 
         .value-title {
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 8px;
-            font-size: 16px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .value-desc {
             font-size: 13px;
             color: #666;
+            line-height: 1.6;
         }
 
         footer p {
@@ -2355,6 +2409,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .nav-close-item {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .header {
                 position: fixed !important;
@@ -2442,28 +2500,74 @@
 
             .nav button {
                 width: 100%;
+                display: block !important;
                 text-align: center !important;
                 white-space: normal !important;
-                padding: 14px 20px !important;
-                font-size: 17px !important;
+                padding: 17px 6px !important;
+                font-size: 15px !important;
                 font-weight: 600;
-                letter-spacing: 0.3px;
-                border-radius: 12px !important;
-                background: rgba(255, 255, 255, 0.05) !important;
-                border: 1px solid rgba(255, 255, 255, 0.08) !important;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+                text-transform: uppercase;
+                letter-spacing: 2.5px;
+                border-radius: 0 !important;
+                background: transparent !important;
+                border: none !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+                color: rgba(255, 255, 255, 0.7);
+                position: relative;
+            }
+
+            .nav li:last-child .nav-btn {
+                border-bottom: none !important;
             }
 
             .nav button:hover {
                 transform: none;
+                color: rgba(255, 255, 255, 0.95);
             }
 
             .nav button.active {
-                background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%) !important;
-                color: #1a1a1a !important;
-                font-weight: 800 !important;
-                border-color: transparent !important;
-                box-shadow: 0 8px 20px rgba(212, 169, 86, 0.3);
+                color: var(--accent) !important;
+                font-weight: 700 !important;
+            }
+
+            .nav button.active::after {
+                content: '';
+                display: block;
+                width: 28px;
+                height: 1px;
+                background: var(--accent);
+                margin: 8px auto 0;
+            }
+
+            .nav-close-item {
+                display: block !important;
+                position: absolute !important;
+                top: 18px;
+                right: 24px;
+                width: auto !important;
+                border-bottom: none !important;
+                animation: none !important;
+            }
+
+            .nav-close {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid rgba(212, 169, 86, 0.5) !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                color: var(--accent);
+                font-size: 17px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                padding: 0 !important;
+                transition: background 0.2s ease, transform 0.2s ease;
+            }
+
+            .nav-close:active {
+                background: rgba(212, 169, 86, 0.2) !important;
+                transform: rotate(90deg);
             }
         }
 
@@ -2616,6 +2720,46 @@
             }
         }
 
+        /* MOTIF DÉCORATIF AU-DESSUS DES TITRES - style bistro chic (au lieu des émojis) */
+        .hero-icons,
+        .hero-emoji-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .hero-kicker-line {
+            width: 36px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+        }
+
+        .hero-kicker-symbol {
+            color: var(--accent);
+            font-size: 15px;
+            line-height: 1;
+        }
+
+        /* ÉQUIPE MOBILE - les 4 valeurs passent en liste empilée avec séparateurs horizontaux */
+        @media (max-width: 640px) {
+            .team-values {
+                grid-template-columns: 1fr !important;
+                border-top: none !important;
+            }
+
+            .value-item {
+                border-right: none !important;
+                border-bottom: 1px solid rgba(212, 169, 86, 0.15);
+                padding: 22px 10px !important;
+            }
+
+            .value-item:last-child {
+                border-bottom: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -2639,13 +2783,14 @@
                 <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu">☰</button>
                 <nav>
                     <ul class="nav">
-                        <li><button class="nav-btn active" onclick="showPage('accueil')">🏠 Accueil</button></li>
-                        <li><button class="nav-btn" onclick="showPage('menu')">🍽️ Menu</button></li>
-                        <li><button class="nav-btn" onclick="showPage('avis')">⭐ Avis</button></li>
-                        <li><button class="nav-btn" onclick="showPage('equipe')">👥 Équipe</button></li>
-                        <li><button class="nav-btn" onclick="showPage('evenements')">🎊 Événements</button></li>
-                        <li><button class="nav-btn" onclick="showPage('contact')">📞 Contact</button></li>
-                        <li><button class="nav-btn" onclick="showPage('reservation')">✨ Réserver</button></li>
+                        <li><button class="nav-btn active" onclick="showPage('accueil')">Accueil</button></li>
+                        <li><button class="nav-btn" onclick="showPage('menu')">Menu</button></li>
+                        <li><button class="nav-btn" onclick="showPage('avis')">Avis</button></li>
+                        <li><button class="nav-btn" onclick="showPage('equipe')">Équipe</button></li>
+                        <li><button class="nav-btn" onclick="showPage('evenements')">Événements</button></li>
+                        <li><button class="nav-btn" onclick="showPage('contact')">Contact</button></li>
+                        <li><button class="nav-btn" onclick="showPage('reservation')">Réserver</button></li>
+                        <li class="nav-close-item"><button class="nav-close" onclick="closeMobileMenu()" aria-label="Fermer le menu">✕</button></li>
                     </ul>
                 </nav>
             </div>
@@ -2664,11 +2809,11 @@
                     <div style="position: absolute; bottom: -80px; left: -80px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(212, 169, 86, 0.1) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
                     
                     <div class="hero-content" style="position: relative; z-index: 2; text-align: center;">
-                        <!-- Icônes avec animation -->
+                        <!-- Motif décoratif -->
                         <div class="hero-emoji-row">
-                            <span style="animation: float 3s ease-in-out infinite;">🍔</span>
-                            <span style="animation: float 3s ease-in-out infinite; animation-delay: 0.2s;">🍺</span>
-                            <span style="animation: float 3s ease-in-out infinite; animation-delay: 0.4s;">🎉</span>
+                            <span class="hero-kicker-line"></span>
+                            <span class="hero-kicker-symbol">◆</span>
+                            <span class="hero-kicker-line"></span>
                         </div>
                         
                         <!-- Titre principal -->
@@ -2741,9 +2886,9 @@
                 <div class="hero">
                     <div class="hero-content">
                         <div class="hero-icons">
-                            <span>🍽️</span>
-                            <span>😋</span>
-                            <span>🔥</span>
+                            <span class="hero-kicker-line"></span>
+                            <span class="hero-kicker-symbol">◆</span>
+                            <span class="hero-kicker-line"></span>
                         </div>
                         <h1>Notre Menu</h1>
                         <p class="tagline">Qualité et saveur à des prix raisonnables</p>
@@ -2754,7 +2899,7 @@
                     <div class="menu-grid">
                         <!-- BURGERS CLASSIQUES -->
                         <div class="menu-category">
-                            <h3>🍔 Les Burgers - Les Classiques</h3>
+                            <h3>Les Burgers - Les Classiques</h3>
                             <div class="menu-item">
                                 <div class="menu-item-header">
                                     <span class="menu-item-name">Le Classique</span>
@@ -2787,7 +2932,7 @@
 
                         <!-- BURGERS ORIGINAUX -->
                         <div class="menu-category">
-                            <h3>🌟 Les Burgers - Les Originaux</h3>
+                            <h3>Les Burgers - Les Originaux</h3>
                             <div class="menu-item">
                                 <div class="menu-item-header">
                                     <span class="menu-item-name">Le Gourmet</span>
@@ -2820,7 +2965,7 @@
 
                         <!-- BURGERS VÉGÉS -->
                         <div class="menu-category">
-                            <h3>🥬 Les Burgers - Les Végés</h3>
+                            <h3>Les Burgers - Les Végés</h3>
                             <div class="menu-item">
                                 <div class="menu-item-header">
                                     <span class="menu-item-name">Le Végétal</span>
@@ -2839,7 +2984,7 @@
 
                         <!-- TARTES FLAMBÉES -->
                         <div class="menu-category">
-                            <h3>🧀 Les Tartes Flambées</h3>
+                            <h3>Les Tartes Flambées</h3>
                             <div class="menu-item">
                                 <div class="menu-item-header">
                                     <span class="menu-item-name">La Traditionnelle</span>
@@ -2872,7 +3017,7 @@
 
                         <!-- BIÈRES -->
                         <div class="menu-category">
-                            <h3>🍺 Sélection de Bières à la Pression</h3>
+                            <h3>Sélection de Bières à la Pression</h3>
                             <div class="menu-item">
                                 <div class="menu-item-header">
                                     <span class="menu-item-name">Kronenbourg</span>
@@ -2905,7 +3050,7 @@
 
                         <!-- BOISSONS & COCKTAILS -->
                         <div class="menu-category">
-                            <h3>🍹 Cocktails Créatifs</h3>
+                            <h3>Cocktails Créatifs</h3>
                             <div class="menu-item">
                                 <div class="menu-item-header">
                                     <span class="menu-item-name">Irish Coffee</span>
@@ -2955,9 +3100,9 @@
                 <div class="hero">
                     <div class="hero-content">
                         <div class="hero-icons">
-                            <span>⭐</span>
-                            <span>😍</span>
-                            <span>👍</span>
+                            <span class="hero-kicker-line"></span>
+                            <span class="hero-kicker-symbol">◆</span>
+                            <span class="hero-kicker-line"></span>
                         </div>
                         <h1>Avis Clients</h1>
                         <p class="tagline">Ce que disent nos clients satisfaits</p>
@@ -3102,9 +3247,9 @@
                 <div class="hero">
                     <div class="hero-content">
                         <div class="hero-icons">
-                            <span>👥</span>
-                            <span>❤️</span>
-                            <span>🎯</span>
+                            <span class="hero-kicker-line"></span>
+                            <span class="hero-kicker-symbol">◆</span>
+                            <span class="hero-kicker-line"></span>
                         </div>
                         <h1>Notre Équipe</h1>
                         <p class="tagline">Des gens passionnés pour vous servir au mieux</p>
@@ -3113,7 +3258,8 @@
 
                 <div class="section">
                     <div class="team-philosophy">
-                        <h3>🎯 Notre Philosophie</h3>
+                        <div class="philosophy-mark">"</div>
+                        <h3>Notre Philosophie</h3>
                         <p>
                             Chez l'AK vigie, nous croyons que chaque visite doit être un moment inoubliable. Notre équipe est réunie autour d'une seule philosophie : <strong>votre satisfaction et votre bien-être</strong>.
                         </p>
@@ -3126,38 +3272,44 @@
                         
                         <div class="team-values">
                             <div class="value-item">
-                                <div class="value-icon">💪</div>
+                                <div class="value-mark">I</div>
                                 <div class="value-title">Professionnalisme</div>
                                 <div class="value-desc">Un service de qualité et attentif à chaque instant</div>
                             </div>
                             <div class="value-item">
-                                <div class="value-icon">😊</div>
+                                <div class="value-mark">II</div>
                                 <div class="value-title">Convivialité</div>
                                 <div class="value-desc">Une atmosphère chaleureuse et accueillante</div>
                             </div>
                             <div class="value-item">
-                                <div class="value-icon">🎨</div>
+                                <div class="value-mark">III</div>
                                 <div class="value-title">Créativité</div>
                                 <div class="value-desc">Des plats savoureux et des cocktails originaux</div>
                             </div>
                             <div class="value-item">
-                                <div class="value-icon">❤️</div>
+                                <div class="value-mark">IV</div>
                                 <div class="value-title">Passion</div>
                                 <div class="value-desc">Faire plaisir c'est notre passion numéro 1</div>
                             </div>
                         </div>
                     </div>
 
+                    <div class="section-kicker">
+                        <span class="hero-kicker-line"></span>
+                        <span class="hero-kicker-symbol">◆</span>
+                        <span class="hero-kicker-line"></span>
+                    </div>
                     <h2>L'Équipe de l'AK vigie</h2>
                     <div class="team-grid">
                         <div class="team-card">
                             <div class="team-avatar">
                                 <!-- 📸 PHOTO ARNAUD: <img src="photos/arnaud.jpg" class="team-image" alt="Arnaud"> -->
-                                👨‍🍳
+                                <span class="team-initial">A</span>
                             </div>
                             <div class="team-info">
                                 <div class="team-name">Arnaud</div>
                                 <div class="team-role">Chef Cuisinier</div>
+                                <div class="team-divider"></div>
                                 <div class="team-desc">Passionné par la cuisine de qualité, Arnaud crée nos menus avec des ingrédients frais et locaux. Ses burgers et tartes flambées sont ses spécialités !</div>
                             </div>
                         </div>
@@ -3165,11 +3317,12 @@
                         <div class="team-card">
                             <div class="team-avatar">
                                 <!-- 📸 PHOTO LAURENT: <img src="photos/laurent.jpg" class="team-image" alt="Laurent"> -->
-                                🧑‍💼
+                                <span class="team-initial">L</span>
                             </div>
                             <div class="team-info">
                                 <div class="team-name">Laurent</div>
                                 <div class="team-role">Gérant</div>
+                                <div class="team-divider"></div>
                                 <div class="team-desc">Laurent veille au bien-être de chaque client. C'est lui que vous verrez souvent dans la salle, toujours prêt à échanger et à rendre votre expérience inoubliable.</div>
                             </div>
                         </div>
@@ -3177,11 +3330,12 @@
                         <div class="team-card">
                             <div class="team-avatar">
                                 <!-- 📸 PHOTO SOPHIE: <img src="photos/sophie.jpg" class="team-image" alt="Sophie"> -->
-                                🍹
+                                <span class="team-initial">S</span>
                             </div>
                             <div class="team-info">
                                 <div class="team-name">Sophie</div>
                                 <div class="team-role">Barmaid & Cocktails</div>
+                                <div class="team-divider"></div>
                                 <div class="team-desc">Avec son sourire contagieux, Sophie concocte les meilleurs cocktails du coin. Expert des 16 bières à la pression, elle saura vous conseiller !</div>
                             </div>
                         </div>
@@ -3189,11 +3343,12 @@
                         <div class="team-card">
                             <div class="team-avatar">
                                 <!-- 📸 PHOTO MARC: <img src="photos/marc.jpg" class="team-image" alt="Marc"> -->
-                                👨‍🍳
+                                <span class="team-initial">M</span>
                             </div>
                             <div class="team-info">
                                 <div class="team-name">Marc</div>
                                 <div class="team-role">Commis Cuisinier</div>
+                                <div class="team-divider"></div>
                                 <div class="team-desc">Marc travaille en tandem avec Arnaud pour assurer que chaque assiette quittant la cuisine soit parfaite. Débordant d'énergie et de bonne humeur !</div>
                             </div>
                         </div>
@@ -3201,11 +3356,12 @@
                         <div class="team-card">
                             <div class="team-avatar">
                                 <!-- 📸 PHOTO CÉLINE: <img src="photos/celine.jpg" class="team-image" alt="Céline"> -->
-                                🧑‍💻
+                                <span class="team-initial">C</span>
                             </div>
                             <div class="team-info">
                                 <div class="team-name">Céline</div>
                                 <div class="team-role">Serveuse & Accueil</div>
+                                <div class="team-divider"></div>
                                 <div class="team-desc">Céline est le cœur du service. Avec son empathie naturelle et son dévouement, elle veille à ce que vous n'ayez besoin de rien durant votre visite.</div>
                             </div>
                         </div>
@@ -3213,11 +3369,12 @@
                         <div class="team-card">
                             <div class="team-avatar">
                                 <!-- 📸 PHOTO DJ KEVIN: <img src="photos/kevin.jpg" class="team-image" alt="DJ Kevin"> -->
-                                🎵
+                                <span class="team-initial">K</span>
                             </div>
                             <div class="team-info">
                                 <div class="team-name">DJ Kevin</div>
                                 <div class="team-role">Animateur & DJ</div>
+                                <div class="team-divider"></div>
                                 <div class="team-desc">Kevin est notre DJ résident les vendredis et samedis. Il sait comment créer l'ambiance parfaite pour que vous dansiez la nuit entière !</div>
                             </div>
                         </div>
@@ -3225,7 +3382,7 @@
                 </div>
 
                 <div class="section" style="text-align: center; background: linear-gradient(135deg, rgba(212, 169, 86, 0.1) 0%, rgba(212, 169, 86, 0.05) 100%); padding: 40px; border-radius: 8px; border-left: 4px solid var(--accent);">
-                    <h3 style="color: var(--primary); font-size: 20px; margin-bottom: 15px;">💝 Merci de votre visite !</h3>
+                    <h3 style="color: var(--primary); font-size: 20px; margin-bottom: 15px;">Merci de votre visite !</h3>
                     <p style="color: #555; font-size: 16px;">
                         L'équipe de l'AK vigie vous remercie de votre confiance. À chaque visite, nous nous efforçons de vous offrir le meilleur service et les meilleures saveurs. Vous êtes notre priorité !
                     </p>
@@ -3235,9 +3392,9 @@
                 <div class="hero">
                     <div class="hero-content">
                         <div class="hero-icons">
-                            <span>🎊</span>
-                            <span>🎵</span>
-                            <span>🎉</span>
+                            <span class="hero-kicker-line"></span>
+                            <span class="hero-kicker-symbol">◆</span>
+                            <span class="hero-kicker-line"></span>
                         </div>
                         <h1>Nos Événements</h1>
                         <p class="tagline">Ambiance, DJ et bonne musique - Venez faire la fête !</p>
@@ -3252,7 +3409,7 @@
                                 <img src="photos/soiree-dj.jpg" alt="Soirée DJ" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                             </div>
                             <div class="event-info">
-                                <div class="event-title">🎉 Vendredi Soir Dansant</div>
+                                <div class="event-title">Vendredi Soir Dansant</div>
                                 <div class="event-date">Chaque vendredi - 22h à 1h</div>
                                 <div class="event-desc">DJ live, ambiance festive et dancefloor chaleureux. Venez danser avec vos amis dans une atmosphère électrique !</div>
                             </div>
@@ -3263,7 +3420,7 @@
                                 <img src="photos/terrasse.jpg" alt="Ambiance Terrasse" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                             </div>
                             <div class="event-info">
-                                <div class="event-title">🌙 Ambiance Terrasse</div>
+                                <div class="event-title">Ambiance Terrasse</div>
                                 <div class="event-date">Jeudi à Dimanche - 18h à 23h</div>
                                 <div class="event-desc">Profitez de notre terrasse pour un moment convivial sous les étoiles. Idéal pour se détendre en bonne compagnie.</div>
                             </div>
@@ -3274,7 +3431,7 @@
                                 <img src="photos/karaoke.jpg" alt="Soirée Karaoké" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                             </div>
                             <div class="event-info">
-                                <div class="event-title">🎤 Soirée Karaoké</div>
+                                <div class="event-title">Soirée Karaoké</div>
                                 <div class="event-date">Samedi 1er & 3e - 21h à 1h</div>
                                 <div class="event-desc">Osez chanter vos chansons préférées ! Ambiance conviviale garantie avec notre système de karaoké professionnel.</div>
                             </div>
@@ -3286,9 +3443,9 @@
                 <div class="hero">
                     <div class="hero-content">
                         <div class="hero-icons">
-                            <span>📍</span>
-                            <span>☎️</span>
-                            <span>💌</span>
+                            <span class="hero-kicker-line"></span>
+                            <span class="hero-kicker-symbol">◆</span>
+                            <span class="hero-kicker-line"></span>
                         </div>
                         <h1>Nous Contacter</h1>
                         <p class="tagline">Venez nous voir à Ostwald - Nous répondons à vos messages !</p>
@@ -3298,20 +3455,20 @@
                 <div class="section">
                     <div class="contact-info">
                         <div class="contact-item">
-                            <h3>📍 Adresse</h3>
+                            <h3>Adresse</h3>
                             <p><strong>l'AK vigie</strong></p>
                             <p>2, Rue du Maréchal Foch<br>67540 Ostwald</p>
                             <p style="margin-top: 15px; font-size: 13px; color: #888;">À côté de la zone commerciale La Vigie</p>
                         </div>
 
                         <div class="contact-item">
-                            <h3>📞 Téléphone</h3>
+                            <h3>Téléphone</h3>
                             <p><strong>+33 6 19 25 32 61</strong></p>
                             <p style="margin-top: 15px; font-size: 14px;">Appelez-nous pour réserver une table ou nous faire connaître vos questions !</p>
                         </div>
 
                         <div class="contact-item">
-                            <h3>🕐 Horaires</h3>
+                            <h3>Horaires</h3>
                             <ul class="hours-list">
                                 <li><span class="day">Mar-Jeu</span> <span>12-14h | 18-23h</span></li>
                                 <li><span class="day">Vendredi</span> <span>12-14h | 18-1h</span></li>
@@ -3355,9 +3512,9 @@
                 <div class="hero">
                     <div class="hero-content">
                         <div class="hero-icons">
-                            <span>✨</span>
-                            <span>📅</span>
-                            <span>👥</span>
+                            <span class="hero-kicker-line"></span>
+                            <span class="hero-kicker-symbol">◆</span>
+                            <span class="hero-kicker-line"></span>
                         </div>
                         <h1>Réservez Une Table</h1>
                         <p class="tagline tagline-nowrap">Appelez-nous directement :<br><span class="phone-number-line">+33 6 19 25 32 61</span></p>
@@ -3434,14 +3591,14 @@
                 </div>
 
                 <div class="footer-section">
-                    <h3>📍 Localisation</h3>
+                    <h3>Localisation</h3>
                     <p><strong>l'AK vigie</strong></p>
                     <p>2, Rue du Maréchal Foch</p>
                     <p>67540 Ostwald</p>
                 </div>
 
                 <div class="footer-section">
-                    <h3>📞 Contact</h3>
+                    <h3>Contact</h3>
                     <p><strong>Téléphone</strong></p>
                     <p>+33 6 19 25 32 61</p>
                     <p style="font-size: 12px; margin-top: 10px;">Nous vous répondons !</p>
@@ -3470,7 +3627,7 @@
 
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            event.currentTarget.classList.add('active');
 
             closeMobileMenu();
 
