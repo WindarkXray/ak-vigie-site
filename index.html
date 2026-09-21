@@ -3089,12 +3089,10 @@
         }
 
         /* ==========================================================
-           CORRECTIFS NAVIGATION : bouton hamburger UNIQUEMENT en mode
-           téléphone, menu classique en ligne sur PC, croix de
-           fermeture bien centrée, header mobile sur une seule ligne.
+           CORRECTIFS : navigation, header, fond plein cadre
            ========================================================== */
 
-        /* --- PC / tablette large : nav classique en ligne, pas de bouton --- */
+        /* --- PC / grand ecran : nav classique en ligne, pas de bouton --- */
         @media (min-width: 769px) {
             .menu-toggle,
             .nav-close-item {
@@ -3171,22 +3169,19 @@
             }
         }
 
-        /* --- Menu mobile : UNE SEULE croix, centree sous les onglets --- */
+        /* --- Menu mobile : hauteur exacte de l'ecran, aucun defilement --- */
         body.menu-open .menu-toggle {
             display: none !important;
         }
 
-        /* Volet : hauteur REELLE de l'ecran (barres du navigateur incluses),
-           contenu qui s'adapte a la hauteur du telephone. */
         @media (max-width: 768px) {
             .nav {
-                height: 100vh !important;
-                height: 100dvh !important;
-                max-height: 100vh !important;
-                max-height: 100dvh !important;
+                height: var(--menu-height, 100vh) !important;
+                max-height: var(--menu-height, 100vh) !important;
                 justify-content: flex-start !important;
-                padding: clamp(28px, 7vh, 80px) 22px clamp(18px, 5vh, 50px) !important;
-                padding-bottom: calc(clamp(18px, 5vh, 50px) + env(safe-area-inset-bottom, 0px)) !important;
+                padding: clamp(24px, calc(var(--menu-height, 100vh) * 0.07), 80px) 22px clamp(18px, calc(var(--menu-height, 100vh) * 0.05), 50px) !important;
+                padding-bottom: calc(clamp(18px, calc(var(--menu-height, 100vh) * 0.05), 50px) + env(safe-area-inset-bottom, 0px)) !important;
+                overscroll-behavior: contain !important;
                 -webkit-overflow-scrolling: touch;
             }
 
@@ -3200,14 +3195,13 @@
             }
 
             .nav li .nav-btn {
-                font-size: clamp(17px, 3.4vh, 28px) !important;
-                font-size: clamp(17px, 3.4dvh, 28px) !important;
+                font-size: clamp(17px, calc(var(--menu-height, 100vh) * 0.034), 28px) !important;
                 line-height: 1.25 !important;
-                padding: clamp(6px, 1.2vh, 15px) 0 !important;
-                padding: clamp(6px, 1.2dvh, 15px) 0 !important;
+                padding: clamp(6px, calc(var(--menu-height, 100vh) * 0.012), 15px) 0 !important;
             }
         }
 
+        /* --- Bouton de fermeture : UNE seule croix, centree sous les onglets --- */
         .nav .nav-close-item {
             position: static !important;
             top: auto !important;
@@ -3233,8 +3227,7 @@
             color: transparent !important;
         }
 
-        /* Croix DESSINEE en CSS : visible sur tous les telephones,
-           aucune police speciale requise. */
+        /* croix dessinee en CSS : visible sur tous les telephones */
         .nav .nav-close::before,
         .nav .nav-close::after {
             content: '' !important;
@@ -3260,10 +3253,10 @@
             border-color: #d4a956 !important;
         }
 
-        /* --- Mobile : titre + bouton sur la même ligne, header moins haut --- */
+        /* --- Header mobile : plus grand, titre + bouton sur une seule ligne --- */
         @media (max-width: 640px) {
             .header {
-                padding: 10px 0 !important;
+                padding: 15px 0 !important;
             }
 
             .header-content {
@@ -3271,7 +3264,7 @@
                 flex-wrap: nowrap !important;
                 align-items: center !important;
                 justify-content: space-between !important;
-                gap: 10px !important;
+                gap: 12px !important;
             }
 
             .logo-wrap {
@@ -3281,35 +3274,134 @@
             }
 
             .logo {
-                font-size: 15px !important;
+                font-size: 19px !important;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
 
             .logo-mark {
-                width: 24px !important;
-                height: 24px !important;
-                font-size: 9px !important;
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 10px !important;
                 flex-shrink: 0;
             }
 
-            .logo-kicker {
-                display: none !important;
+            .header-accent-bar {
+                display: block !important;
             }
 
-            .header-accent-bar {
-                display: none !important;
+            .logo-kicker {
+                display: block !important;
+                font-size: 7px !important;
+                letter-spacing: 0.26em !important;
+                padding-left: 40px !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .menu-toggle {
                 flex-shrink: 0;
-                width: 36px !important;
-                height: 36px !important;
-                font-size: 13px !important;
+                width: 42px !important;
+                height: 42px !important;
+                font-size: 15px !important;
             }
         }
 
+        /* --- Fond noir plein cadre : plus de bande claire en haut ni sur les cotes --- */
+        .content {
+            padding-top: 0 !important;
+            overflow-x: hidden;
+            overflow-x: clip;
+        }
+
+        .lux-hero,
+        .page .hero {
+            width: auto !important;
+            max-width: none !important;
+            margin-left: calc(50% - 50vw) !important;
+            margin-right: calc(50% - 50vw) !important;
+            border-top: none !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-radius: 0 !important;
+        }
+
+        /* --- Accueil : le hero occupe exactement tout l'ecran visible --- */
+        .lux-hero {
+            min-height: calc(var(--app-height, 100vh) - var(--header-height, 92px)) !important;
+            height: auto !important;
+        }
+
+        /* Contenu du hero proportionnel a la hauteur de l'ecran :
+           il tient dans une seule page, meme sur les petits telephones. */
+        @media (max-width: 768px) {
+            .lux-hero__inner {
+                padding-top: clamp(26px, calc(var(--app-height, 100vh) * 0.085), 80px) !important;
+                padding-bottom: clamp(50px, calc(var(--app-height, 100vh) * 0.11), 100px) !important;
+            }
+
+            .lux-hero__inner .lux-kicker {
+                margin-bottom: clamp(10px, calc(var(--app-height, 100vh) * 0.030), 26px) !important;
+            }
+
+            .lux-hero__title {
+                font-size: clamp(34px, calc(var(--app-height, 100vh) * 0.095), 52px) !important;
+                margin-bottom: clamp(10px, calc(var(--app-height, 100vh) * 0.026), 22px) !important;
+            }
+
+            .lux-hero__inner .lux-rule {
+                margin-bottom: clamp(10px, calc(var(--app-height, 100vh) * 0.028), 24px) !important;
+            }
+
+            .lux-hero__sub {
+                margin-bottom: clamp(12px, calc(var(--app-height, 100vh) * 0.040), 34px) !important;
+            }
+
+            .lux-hero .lux-cta-group {
+                gap: clamp(8px, calc(var(--app-height, 100vh) * 0.018), 16px) !important;
+            }
+
+            .lux-hero .lux-btn {
+                padding: clamp(11px, calc(var(--app-height, 100vh) * 0.022), 17px) 34px !important;
+            }
+
+            .lux-scroll {
+                bottom: clamp(12px, calc(var(--app-height, 100vh) * 0.03), 30px) !important;
+            }
+        }
+
+        /* --- Bandeau signature : plus de bande noire, simple filet dore --- */
+        .lux-strip {
+            margin-left: calc(50% - 50vw) !important;
+            margin-right: calc(50% - 50vw) !important;
+            background: transparent !important;
+            border-top: 1px solid rgba(212, 169, 86, 0.38) !important;
+            border-bottom: 1px solid rgba(212, 169, 86, 0.38) !important;
+            padding: 20px 22px !important;
+            gap: 10px 26px !important;
+        }
+
+        .lux-strip span {
+            color: rgba(40, 36, 30, 0.7) !important;
+        }
+
+        .lux-strip em {
+            color: #c39a47 !important;
+        }
+
+        @media (max-width: 640px) {
+            .lux-strip {
+                padding: 16px 18px !important;
+                gap: 8px 16px !important;
+            }
+
+            .lux-strip span {
+                font-size: 9px !important;
+                letter-spacing: 0.18em !important;
+            }
+        }
 
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -4186,11 +4278,47 @@
             window.scrollTo(0, 0);
         }
 
+        /* Hauteurs reelles de la zone visible (barres du navigateur comprises) */
+        function visibleHeight() {
+            return Math.round((window.visualViewport && window.visualViewport.height) || window.innerHeight);
+        }
+
+        /* --menu-height : toujours a jour, pour le volet du menu */
+        function setMenuHeight() {
+            document.documentElement.style.setProperty('--menu-height', visibleHeight() + 'px');
+        }
+
+        /* --app-height / --header-height : stables, pour la hauteur du hero.
+           On ignore les variations dues a l'apparition de la barre d'adresse
+           pour que la page ne sursaute pas pendant le defilement. */
+        let lastLayoutWidth = -1;
+        function setAppHeight(force) {
+            const w = window.innerWidth;
+            if (!force && w === lastLayoutWidth) return;
+            lastLayoutWidth = w;
+            document.documentElement.style.setProperty('--app-height', visibleHeight() + 'px');
+            const header = document.querySelector('.header');
+            if (header) {
+                document.documentElement.style.setProperty('--header-height', Math.round(header.getBoundingClientRect().height) + 'px');
+            }
+        }
+
+        setAppHeight(true);
+        setMenuHeight();
+        window.addEventListener('load', function () { setAppHeight(true); setMenuHeight(); });
+        window.addEventListener('resize', function () { setAppHeight(); setMenuHeight(); });
+        window.addEventListener('orientationchange', function () { setAppHeight(true); setMenuHeight(); });
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', setMenuHeight);
+        }
+
         function lockBodyScroll() {
             document.body.dataset.scrollY = window.scrollY;
             document.body.style.position = 'fixed';
             document.body.style.top = `-${window.scrollY}px`;
             document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
         }
 
         function unlockBodyScroll() {
@@ -4198,6 +4326,8 @@
             document.body.style.position = '';
             document.body.style.top = '';
             document.body.style.width = '';
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
             window.scrollTo(0, parseInt(y, 10));
         }
 
@@ -4207,8 +4337,16 @@
             document.body.classList.toggle('menu-open', isOpen);
             document.querySelector('.menu-toggle').textContent = '☰';
             if (isOpen) {
+                setMenuHeight();
                 lockBodyScroll();
+                // le menu ne defile pas s'il tient entierement dans l'ecran
+                requestAnimationFrame(function () {
+                    const fits = nav.scrollHeight <= nav.clientHeight + 1;
+                    nav.style.overflowY = fits ? 'hidden' : 'auto';
+                    nav.style.touchAction = fits ? 'none' : 'pan-y';
+                });
             } else {
+                nav.style.touchAction = '';
                 unlockBodyScroll();
             }
         }
@@ -4238,13 +4376,10 @@
         }
 
         function adjustHeaderOffset() {
+            // Le header est en position: sticky, il occupe deja sa place :
+            // aucun espace supplementaire ne doit etre ajoute au-dessus du contenu.
             const content = document.querySelector('.content');
-            if (window.matchMedia('(max-width: 768px)').matches) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                content.style.paddingTop = (headerHeight + 20) + 'px';
-            } else {
-                content.style.paddingTop = '';
-            }
+            content.style.paddingTop = '';
         }
 
         window.addEventListener('load', adjustHeaderOffset);
