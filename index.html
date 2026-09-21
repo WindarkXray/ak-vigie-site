@@ -3176,6 +3176,38 @@
             display: none !important;
         }
 
+        /* Volet : hauteur REELLE de l'ecran (barres du navigateur incluses),
+           contenu qui s'adapte a la hauteur du telephone. */
+        @media (max-width: 768px) {
+            .nav {
+                height: 100vh !important;
+                height: 100dvh !important;
+                max-height: 100vh !important;
+                max-height: 100dvh !important;
+                justify-content: flex-start !important;
+                padding: clamp(28px, 7vh, 80px) 22px clamp(18px, 5vh, 50px) !important;
+                padding-bottom: calc(clamp(18px, 5vh, 50px) + env(safe-area-inset-bottom, 0px)) !important;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* centrage vertical qui n'ampute jamais le haut ni le bas */
+            .nav li:first-child {
+                margin-top: auto !important;
+            }
+
+            .nav .nav-close-item {
+                margin-bottom: auto !important;
+            }
+
+            .nav li .nav-btn {
+                font-size: clamp(17px, 3.4vh, 28px) !important;
+                font-size: clamp(17px, 3.4dvh, 28px) !important;
+                line-height: 1.25 !important;
+                padding: clamp(6px, 1.2vh, 15px) 0 !important;
+                padding: clamp(6px, 1.2dvh, 15px) 0 !important;
+            }
+        }
+
         .nav .nav-close-item {
             position: static !important;
             top: auto !important;
@@ -3183,52 +3215,49 @@
             width: 100% !important;
             max-width: 520px !important;
             justify-content: center !important;
-            margin-top: 28px !important;
+            margin-top: clamp(14px, 2.5vh, 28px) !important;
         }
 
         .nav .nav-close {
+            position: relative !important;
             flex: 0 0 auto !important;
             width: 46px !important;
             height: 46px !important;
             padding: 0 !important;
             margin: 0 auto !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
+            display: inline-block !important;
             background: transparent !important;
-            border: 1px solid rgba(212, 169, 86, 0.4) !important;
-            color: #e8c97d !important;
+            border: 1px solid rgba(212, 169, 86, 0.45) !important;
             font-size: 0 !important;
             line-height: 0 !important;
+            color: transparent !important;
+        }
+
+        /* Croix DESSINEE en CSS : visible sur tous les telephones,
+           aucune police speciale requise. */
+        .nav .nav-close::before,
+        .nav .nav-close::after {
+            content: '' !important;
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            width: 20px !important;
+            height: 2px !important;
+            background: #e8c97d !important;
+            border-radius: 2px !important;
+        }
+
+        .nav .nav-close::before {
+            transform: translate(-50%, -50%) rotate(45deg) !important;
+        }
+
+        .nav .nav-close::after {
+            transform: translate(-50%, -50%) rotate(-45deg) !important;
         }
 
         .nav .nav-close:hover {
             background: rgba(212, 169, 86, 0.12) !important;
             border-color: #d4a956 !important;
-        }
-
-        .nav .nav-close::before {
-            content: '✕';
-            display: block;
-            font-size: 18px;
-            line-height: 1;
-            color: #e8c97d;
-        }
-
-        /* --- Menu mobile : textes des onglets agrandis --- */
-        @media (max-width: 768px) {
-            .nav li .nav-btn {
-                font-size: 28px !important;
-                line-height: 1.25 !important;
-                padding: 15px 0 !important;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .nav li .nav-btn {
-                font-size: 24px !important;
-                padding: 13px 0 !important;
-            }
         }
 
         /* --- Mobile : titre + bouton sur la même ligne, header moins haut --- */
