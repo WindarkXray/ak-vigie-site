@@ -3372,6 +3372,20 @@
             }
         }
 
+        /* --- Plus de zone blanche sous le footer (rebond du navigateur) --- */
+        html {
+            background-color: #0d0d0d;
+            overscroll-behavior-y: none;
+        }
+
+        body {
+            overscroll-behavior-y: none;
+        }
+
+        footer {
+            padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px)) !important;
+        }
+
         /* --- Bandeau signature : plus de bande noire, simple filet dore --- */
         .lux-strip {
             margin-left: calc(50% - 50vw) !important;
