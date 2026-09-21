@@ -11,6 +11,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            scrollbar-gutter: stable;
+        }
+
+        body {
+            width: 100%;
+        }
+
         :root {
             --primary: #1a1a1a;
             --accent: #d4a956;
@@ -1592,11 +1602,18 @@
             font-weight: 600;
         }
 
+        /* EVENT GRID */
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
         .events-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 30px;   
+            margin-top: 30px;
         }
 
         .event-card {
@@ -1837,6 +1854,20 @@
             .gallery {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
+        }
+
+        /* FOOTER */
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            color: white;
+            padding: 60px 20px 30px;
+            margin-top: 80px;
+            border-top: 3px solid var(--accent);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+            width: 100%;
+        }
+
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .footer-main {
@@ -2213,6 +2244,364 @@
             }
         }
 
+        /* HERO ACCUEIL - classes structurées (remplace les styles inline) */
+        .hero-emoji-row {
+            font-size: 60px;
+            gap: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 64px;
+            margin-bottom: 15px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            font-weight: 900;
+            background: linear-gradient(135deg, white 0%, #e8c97d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #d4a956;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 45px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badge {
+            background: linear-gradient(135deg, rgba(212, 169, 86, 0.25) 0%, rgba(212, 169, 86, 0.1) 100%);
+            padding: 14px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 169, 86, 0.5);
+            font-size: 15px;
+            color: white;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 14px;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .hero-cta-btn {
+            flex: 1;
+            padding: 16px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .hero-cta-primary {
+            background: linear-gradient(135deg, #d4a956 0%, #e8c97d 100%);
+            color: #1a1a1a;
+            border: none;
+            box-shadow: 0 8px 25px rgba(212, 169, 86, 0.3);
+        }
+
+        .hero-cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #d4a956;
+        }
+
+        .cta-short {
+            display: none;
+        }
+
+        .hero-divider {
+            margin-top: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .hero-divider-line {
+            height: 1px;
+            width: 40px;
+            background: linear-gradient(to right, transparent, rgba(212, 169, 86, 0.5));
+        }
+
+        .hero-divider-line.reverse {
+            background: linear-gradient(to left, transparent, rgba(212, 169, 86, 0.5));
+        }
+
+        .hero-divider-text {
+            color: #999;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        /* NAV MOBILE - menu plein écran avec bouton ☰ */
+        .menu-toggle {
+            display: none;
+        }
+
+        @keyframes navOverlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes navItemSlideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                z-index: 500 !important;
+            }
+
+            .header-content {
+                flex-wrap: nowrap !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                gap: 12px !important;
+            }
+
+            .menu-toggle {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 44px;
+                height: 44px;
+                background: rgba(255, 255, 255, 0.08);
+                border: 2px solid var(--accent);
+                color: var(--accent);
+                font-size: 20px;
+                border-radius: 8px;
+                cursor: pointer;
+                flex-shrink: 0;
+                margin-left: auto;
+                transition: background 0.2s ease;
+            }
+
+            .menu-toggle:active {
+                background: rgba(212, 169, 86, 0.25);
+            }
+
+            .header-content > nav {
+                order: 3;
+            }
+
+            .nav {
+                display: none !important;
+                position: fixed !important;
+                inset: 0 !important;
+                height: 100dvh !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: stretch !important;
+                gap: 12px !important;
+                margin: 0 !important;
+                padding: 95px 24px 40px !important;
+                border-radius: 0 !important;
+                z-index: 400 !important;
+                overflow-y: auto;
+                background:
+                    radial-gradient(circle at 15% 15%, rgba(212, 169, 86, 0.12) 0%, transparent 45%),
+                    radial-gradient(circle at 85% 85%, rgba(212, 169, 86, 0.08) 0%, transparent 45%),
+                    linear-gradient(160deg, #1a1a1a 0%, #262626 55%, #1a1a1a 100%);
+            }
+
+            .nav.mobile-open {
+                display: flex !important;
+                animation: navOverlayFadeIn 0.25s ease;
+            }
+
+            .nav li {
+                width: 100%;
+                list-style: none;
+                animation: navItemSlideIn 0.35s ease backwards;
+            }
+
+            .nav li:nth-child(1) { animation-delay: 0.03s; }
+            .nav li:nth-child(2) { animation-delay: 0.07s; }
+            .nav li:nth-child(3) { animation-delay: 0.11s; }
+            .nav li:nth-child(4) { animation-delay: 0.15s; }
+            .nav li:nth-child(5) { animation-delay: 0.19s; }
+            .nav li:nth-child(6) { animation-delay: 0.23s; }
+            .nav li:nth-child(7) { animation-delay: 0.27s; }
+
+            .nav li::after {
+                display: none !important;
+            }
+
+            .nav button {
+                width: 100%;
+                text-align: center !important;
+                white-space: normal !important;
+                padding: 14px 20px !important;
+                font-size: 17px !important;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                border-radius: 12px !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            }
+
+            .nav button:hover {
+                transform: none;
+            }
+
+            .nav button.active {
+                background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%) !important;
+                color: #1a1a1a !important;
+                font-weight: 800 !important;
+                border-color: transparent !important;
+                box-shadow: 0 8px 20px rgba(212, 169, 86, 0.3);
+            }
+        }
+
+        /* ACCUEIL MOBILE - version compacte du hero */
+        @media (max-width: 768px) {
+            #hero-accueil {
+                padding: 45px 20px !important;
+            }
+
+            .hero-emoji-row {
+                font-size: 36px !important;
+                gap: 14px !important;
+                margin-bottom: 16px !important;
+            }
+
+            .hero-title {
+                font-size: 30px !important;
+                letter-spacing: -1px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .hero-subtitle {
+                font-size: 13px !important;
+                margin-bottom: 20px !important;
+                letter-spacing: 0.5px !important;
+            }
+
+            .hero-badges {
+                gap: 8px !important;
+                margin-bottom: 24px !important;
+            }
+
+            .hero-badge {
+                padding: 8px 14px !important;
+                font-size: 12.5px !important;
+                white-space: normal !important;
+            }
+
+            .hero-cta-group {
+                gap: 10px !important;
+            }
+
+            .hero-cta-btn {
+                padding: 13px 8px !important;
+                font-size: 13px !important;
+            }
+
+            .cta-full {
+                display: none !important;
+            }
+
+            .cta-short {
+                display: inline !important;
+            }
+
+            .hero-divider {
+                margin-top: 22px !important;
+            }
+
+            .final-cta-group {
+                flex-direction: row !important;
+                gap: 8px !important;
+            }
+
+            .final-cta-btn {
+                font-size: 12.5px !important;
+                padding: 12px 6px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                line-height: 1.2 !important;
+            }
+
+            .final-cta-phone {
+                font-size: 11px !important;
+                padding: 12px 4px !important;
+                white-space: nowrap !important;
+                letter-spacing: -0.2px;
+            }
+
+            .cta-final-wrap {
+                padding: 40px 12px !important;
+            }
+
+            /* MOINS D'ESPACE BLANC SUR LES CÔTÉS */
+            .container {
+                padding: 0 12px !important;
+            }
+
+            .section {
+                padding: 35px 10px !important;
+            }
+
+            #hero-accueil {
+                padding: 45px 12px !important;
+            }
+
+            .hero {
+                padding: 45px 12px !important;
+            }
+        }
+
+        /* MENU MOBILE - sur les écrans courts (ex: iPhone SE), démarrer en haut
+           et permettre le défilement pour garder tous les onglets accessibles */
+        @media (max-width: 768px) and (max-height: 700px) {
+            .nav {
+                justify-content: flex-start !important;
+                padding-top: 85px !important;
+                gap: 8px !important;
+            }
+
+            .nav button {
+                padding: 11px 18px !important;
+                font-size: 15px !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -2233,6 +2622,7 @@
                     </div>
                     <div class="header-accent-bar"></div>
                 </div>
+                <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu">☰</button>
                 <nav>
                     <ul class="nav">
                         <li><button class="nav-btn active" onclick="showPage('accueil')">🏠 Accueil</button></li>
@@ -2254,43 +2644,43 @@
             <!-- ACCUEIL -->
             <div id="accueil" class="page active">
                 <!-- HERO PREMIUM -->
-                <div class="hero" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%); padding: 80px 20px; position: relative; overflow: hidden;" id="hero-accueil">
+                <div class="hero" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%); position: relative; overflow: hidden;" id="hero-accueil">
                     <!-- Décoration fond -->
                     <div style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(212, 169, 86, 0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
                     <div style="position: absolute; bottom: -80px; left: -80px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(212, 169, 86, 0.1) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
                     
                     <div class="hero-content" style="position: relative; z-index: 2; text-align: center;">
                         <!-- Icônes avec animation -->
-                        <div style="font-size: 60px; gap: 25px; margin-bottom: 30px; display: flex; justify-content: center; align-items: center;">
+                        <div class="hero-emoji-row">
                             <span style="animation: float 3s ease-in-out infinite;">🍔</span>
                             <span style="animation: float 3s ease-in-out infinite; animation-delay: 0.2s;">🍺</span>
                             <span style="animation: float 3s ease-in-out infinite; animation-delay: 0.4s;">🎉</span>
                         </div>
                         
                         <!-- Titre principal -->
-                        <h1 style="font-size: 64px; margin-bottom: 15px; letter-spacing: -2px; line-height: 1.1; font-weight: 900; background: linear-gradient(135deg, white 0%, #e8c97d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Bienvenue à l'AK vigie</h1>
+                        <h1 class="hero-title">Bienvenue à l'AK vigie</h1>
                         
                         <!-- Sous-titre -->
-                        <p style="font-size: 20px; margin-bottom: 40px; color: #d4a956; font-weight: 500; letter-spacing: 1px;">LE BISTRO-BRASSERIE DE RÉFÉRENCE À OSTWALD</p>
+                        <p class="hero-subtitle">LE BISTRO-BRASSERIE DE RÉFÉRENCE À OSTWALD</p>
                         
                         <!-- Badges -->
-                        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 45px; max-width: 500px; margin-left: auto; margin-right: auto;">
-                            <div style="background: linear-gradient(135deg, rgba(212, 169, 86, 0.25) 0%, rgba(212, 169, 86, 0.1) 100%); padding: 14px 20px; border-radius: 10px; border: 1px solid rgba(212, 169, 86, 0.5); font-size: 15px; color: white; font-weight: 500;">✨ Burgers maison hauts et savoureux</div>
-                            <div style="background: linear-gradient(135deg, rgba(212, 169, 86, 0.25) 0%, rgba(212, 169, 86, 0.1) 100%); padding: 14px 20px; border-radius: 10px; border: 1px solid rgba(212, 169, 86, 0.5); font-size: 15px; color: white; font-weight: 500;">🍻 16 bières à la pression premium</div>
-                            <div style="background: linear-gradient(135deg, rgba(212, 169, 86, 0.25) 0%, rgba(212, 169, 86, 0.1) 100%); padding: 14px 20px; border-radius: 10px; border: 1px solid rgba(212, 169, 86, 0.5); font-size: 15px; color: white; font-weight: 500;">🎊 Ambiance conviviale et chaleureuse</div>
+                        <div class="hero-badges">
+                            <div class="hero-badge">✨ Burgers maison hauts et savoureux</div>
+                            <div class="hero-badge">🍻 16 bières à la pression premium</div>
+                            <div class="hero-badge">🎊 Ambiance conviviale et chaleureuse</div>
                         </div>
                         
                         <!-- CTA Buttons -->
-                        <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 450px; margin: 0 auto;">
-                            <a href="#reservation" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'}); showPage('reservation'); return false;" style="background: linear-gradient(135deg, #d4a956 0%, #e8c97d 100%); color: #1a1a1a; padding: 16px 32px; border-radius: 10px; text-decoration: none; font-weight: 800; cursor: pointer; transition: all 0.3s ease; border: none; text-align: center; width: 100%; display: block; font-size: 16px; box-shadow: 0 8px 25px rgba(212, 169, 86, 0.3);">📅 Réserver une Table Maintenant</a>
-                            <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); showPage('contact'); return false;" style="background: transparent; color: white; padding: 16px 32px; border-radius: 10px; text-decoration: none; font-weight: 800; cursor: pointer; transition: all 0.3s ease; border: 2px solid #d4a956; text-align: center; width: 100%; display: block; font-size: 16px;">📞 Nous Contacter</a>
+                        <div class="hero-cta-group">
+                            <a href="#reservation" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'}); showPage('reservation'); return false;" class="hero-cta-btn hero-cta-primary">📅 <span class="cta-full">Réserver une Table Maintenant</span><span class="cta-short">Réserver</span></a>
+                            <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); showPage('contact'); return false;" class="hero-cta-btn hero-cta-secondary">📞 <span class="cta-full">Nous Contacter</span><span class="cta-short">Contact</span></a>
                         </div>
                         
                         <!-- Mini divider avec texte -->
-                        <div style="margin-top: 45px; display: flex; align-items: center; justify-content: center; gap: 15px;">
-                            <div style="height: 1px; width: 40px; background: linear-gradient(to right, transparent, rgba(212, 169, 86, 0.5));"></div>
-                            <span style="color: #999; font-size: 13px; letter-spacing: 2px;">SCROLL POUR DÉCOUVRIR</span>
-                            <div style="height: 1px; width: 40px; background: linear-gradient(to left, transparent, rgba(212, 169, 86, 0.5));"></div>
+                        <div class="hero-divider">
+                            <div class="hero-divider-line"></div>
+                            <span class="hero-divider-text">SCROLL POUR DÉCOUVRIR</span>
+                            <div class="hero-divider-line reverse"></div>
                         </div>
                     </div>
                 </div>
@@ -2322,12 +2712,12 @@
 
 
                 <!-- CTA FINAL -->
-                <div style="text-align: center; padding: 50px 20px; background: linear-gradient(135deg, rgba(212, 169, 86, 0.1) 0%, rgba(232, 201, 125, 0.05) 100%);">
+                <div class="cta-final-wrap" style="text-align: center; padding: 50px 20px; background: linear-gradient(135deg, rgba(212, 169, 86, 0.1) 0%, rgba(232, 201, 125, 0.05) 100%);">
                     <h2 style="margin-bottom: 15px; font-size: 28px;">Envie de nous visiter ?</h2>
                     <p style="font-size: 14px; margin-bottom: 25px; color: #666;">Réservez maintenant ou appelez-nous !</p>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="#reservation" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'}); showPage('reservation'); return false;" style="background: var(--accent); color: var(--primary); padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-align: center; display: block; width: 100%;">📅 Réserver une table</a>
-                        <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); showPage('contact'); return false;" style="background: var(--primary); color: white; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-align: center; display: block; width: 100%;">📞 +33 6 19 25 32 61</a>
+                    <div class="final-cta-group" style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="#reservation" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'}); showPage('reservation'); return false;" class="final-cta-btn" style="background: var(--accent); color: var(--primary); padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-align: center; display: block; width: 100%;">📅 Réserver une table</a>
+                        <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); showPage('contact'); return false;" class="final-cta-btn final-cta-phone" style="background: var(--primary); color: white; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-align: center; display: block; width: 100%;">📞 +33 6 19 25 32 61</a>
                     </div>
                 </div>
             </div>
@@ -3068,8 +3458,58 @@
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
+            closeMobileMenu();
+
             window.scrollTo(0, 0);
         }
+
+        function lockBodyScroll() {
+            document.body.dataset.scrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${window.scrollY}px`;
+            document.body.style.width = '100%';
+        }
+
+        function unlockBodyScroll() {
+            const y = document.body.dataset.scrollY || '0';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, parseInt(y, 10));
+        }
+
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav');
+            const isOpen = nav.classList.toggle('mobile-open');
+            document.querySelector('.menu-toggle').textContent = isOpen ? '✕' : '☰';
+            if (isOpen) {
+                lockBodyScroll();
+            } else {
+                unlockBodyScroll();
+            }
+        }
+
+        function closeMobileMenu() {
+            const nav = document.querySelector('.nav');
+            if (nav.classList.contains('mobile-open')) {
+                unlockBodyScroll();
+            }
+            nav.classList.remove('mobile-open');
+            document.querySelector('.menu-toggle').textContent = '☰';
+        }
+
+        function adjustHeaderOffset() {
+            const content = document.querySelector('.content');
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                content.style.paddingTop = (headerHeight + 20) + 'px';
+            } else {
+                content.style.paddingTop = '';
+            }
+        }
+
+        window.addEventListener('load', adjustHeaderOffset);
+        window.addEventListener('resize', adjustHeaderOffset);
 
         function handleReservation(e) {
             e.preventDefault();
