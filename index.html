@@ -3088,6 +3088,200 @@
             }
         }
 
+        /* ==========================================================
+           CORRECTIFS NAVIGATION : bouton hamburger UNIQUEMENT en mode
+           téléphone, menu classique en ligne sur PC, croix de
+           fermeture bien centrée, header mobile sur une seule ligne.
+           ========================================================== */
+
+        /* --- PC / tablette large : nav classique en ligne, pas de bouton --- */
+        @media (min-width: 769px) {
+            .menu-toggle,
+            .nav-close-item {
+                display: none !important;
+            }
+
+            .nav {
+                position: static !important;
+                inset: auto !important;
+                width: auto !important;
+                height: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                gap: 0 !important;
+                overflow: visible !important;
+                background: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                z-index: auto !important;
+            }
+
+            .nav::before {
+                display: none !important;
+            }
+
+            .nav li {
+                width: auto !important;
+                max-width: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .nav li::after {
+                display: block !important;
+            }
+
+            .nav button {
+                width: auto !important;
+                background: none !important;
+                border: none !important;
+                border-bottom: 3px solid transparent !important;
+                color: white !important;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+                font-weight: 500 !important;
+                font-size: 15px !important;
+                letter-spacing: normal !important;
+                text-transform: none !important;
+                line-height: 1.6 !important;
+                padding: 12px 18px !important;
+                transition: all 0.3s ease !important;
+            }
+
+            .nav button:hover {
+                background: none !important;
+                color: var(--accent) !important;
+                letter-spacing: normal !important;
+                transform: translateY(-2px) !important;
+            }
+
+            .nav button.active {
+                background: rgba(212, 169, 86, 0.1) !important;
+                border-bottom-color: var(--accent) !important;
+                color: var(--accent) !important;
+                border-radius: 4px 4px 0 0;
+            }
+
+            .nav button.active::after {
+                content: '' !important;
+            }
+        }
+
+        /* --- Menu mobile : UNE SEULE croix, centree sous les onglets --- */
+        body.menu-open .menu-toggle {
+            display: none !important;
+        }
+
+        .nav .nav-close-item {
+            position: static !important;
+            top: auto !important;
+            right: auto !important;
+            width: 100% !important;
+            max-width: 520px !important;
+            justify-content: center !important;
+            margin-top: 28px !important;
+        }
+
+        .nav .nav-close {
+            flex: 0 0 auto !important;
+            width: 46px !important;
+            height: 46px !important;
+            padding: 0 !important;
+            margin: 0 auto !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: transparent !important;
+            border: 1px solid rgba(212, 169, 86, 0.4) !important;
+            color: #e8c97d !important;
+            font-size: 0 !important;
+            line-height: 0 !important;
+        }
+
+        .nav .nav-close:hover {
+            background: rgba(212, 169, 86, 0.12) !important;
+            border-color: #d4a956 !important;
+        }
+
+        .nav .nav-close::before {
+            content: '✕';
+            display: block;
+            font-size: 18px;
+            line-height: 1;
+            color: #e8c97d;
+        }
+
+        /* --- Menu mobile : textes des onglets agrandis --- */
+        @media (max-width: 768px) {
+            .nav li .nav-btn {
+                font-size: 28px !important;
+                line-height: 1.25 !important;
+                padding: 15px 0 !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .nav li .nav-btn {
+                font-size: 24px !important;
+                padding: 13px 0 !important;
+            }
+        }
+
+        /* --- Mobile : titre + bouton sur la même ligne, header moins haut --- */
+        @media (max-width: 640px) {
+            .header {
+                padding: 10px 0 !important;
+            }
+
+            .header-content {
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                gap: 10px !important;
+            }
+
+            .logo-wrap {
+                min-width: 0;
+                flex: 1 1 auto;
+                overflow: hidden;
+            }
+
+            .logo {
+                font-size: 15px !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .logo-mark {
+                width: 24px !important;
+                height: 24px !important;
+                font-size: 9px !important;
+                flex-shrink: 0;
+            }
+
+            .logo-kicker {
+                display: none !important;
+            }
+
+            .header-accent-bar {
+                display: none !important;
+            }
+
+            .menu-toggle {
+                flex-shrink: 0;
+                width: 36px !important;
+                height: 36px !important;
+                font-size: 13px !important;
+            }
+        }
+
+
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3981,7 +4175,8 @@
         function toggleMobileMenu() {
             const nav = document.querySelector('.nav');
             const isOpen = nav.classList.toggle('mobile-open');
-            document.querySelector('.menu-toggle').textContent = isOpen ? '✕' : '☰';
+            document.body.classList.toggle('menu-open', isOpen);
+            document.querySelector('.menu-toggle').textContent = '☰';
             if (isOpen) {
                 lockBodyScroll();
             } else {
@@ -3995,6 +4190,7 @@
                 unlockBodyScroll();
             }
             nav.classList.remove('mobile-open');
+            document.body.classList.remove('menu-open');
             document.querySelector('.menu-toggle').textContent = '☰';
         }
 
