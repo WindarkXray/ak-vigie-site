@@ -4144,21 +4144,22 @@
                         <h2 style="margin-bottom: 30px;">Nous envoyer un message</h2>
                         <div class="form-container" style="max-width: 100%;">
                             <form onsubmit="handleContact(event)">
+                                <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
                                 <div id="contactMsg"></div>
 
                                 <div class="form-group">
                                     <label>Votre nom *</label>
-                                    <input type="text" required>
+                                    <input type="text" name="nom" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Votre email *</label>
-                                    <input type="email" required>
+                                    <input type="email" name="email" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Votre message *</label>
-                                    <textarea required placeholder="Dites-nous comment nous pouvons vous aider..."></textarea>
+                                    <textarea name="message" required placeholder="Dites-nous comment nous pouvons vous aider..."></textarea>
                                 </div>
 
                                 <button type="submit" class="cta-btn" style="width: 100%;">Envoyer le message</button>
@@ -4188,6 +4189,7 @@
                         <div id="reservationMsg"></div>
 
                         <form onsubmit="handleReservation(event)">
+                            <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
                             <div class="form-group">
                                 <label>Votre nom *</label>
                                 <input type="text" name="nom" required>
@@ -4287,7 +4289,7 @@
            Si le Sheet est injoignable, le contenu écrit dans ce fichier
            reste affiché (aucun risque de page vide).
            ========================================================= */
-        const LIEN_GOOGLE_SHEET = 'https://docs.google.com/spreadsheets/d/1LHS7z67vdKQ504u63r7Yci67Wduy2IIn0Ryaed3qdlA/edit?gid=754653416#gid=754653416'; // <-- coller ici le lien du Google Sheet (tel quel, copié depuis le navigateur)
+        const LIEN_GOOGLE_SHEET = ''; // <-- coller ici le lien du Google Sheet (tel quel, copié depuis le navigateur)
         const GOOGLE_SHEET_ID = (LIEN_GOOGLE_SHEET.match(/\/d\/([\w-]+)/) || [])[1] || LIEN_GOOGLE_SHEET.trim();
 
         function sheetUrl(nomOnglet) {
@@ -4545,29 +4547,88 @@
         window.addEventListener('load', adjustHeaderOffset);
         window.addEventListener('resize', adjustHeaderOffset);
 
+        /* =========================================================
+           ENVOI DES FORMULAIRES PAR EMAIL (Web3Forms, sans backend)
+           Coller ici la clé reçue par email sur https://web3forms.com
+           ========================================================= */
+        const WEB3FORMS_ACCESS_KEY = '611f3b20-1f0c-49ac-b800-cfba38523f9c'; // <-- coller la clé ici
+
+        function afficherMsg(zone, ok, texte) {
+            zone.innerHTML = '<div class="' + (ok ? 'success-msg' : 'error-msg') + '"' +
+                (ok ? '' : ' style="background:#fdecea;color:#b3261e;border:1px solid #f5c2c0;padding:12px 16px;border-radius:8px;margin-bottom:16px;"') +
+                '>' + texte + '</div>';
+            zone.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        async function envoyerFormulaire(form, zoneMsg, donnees, messageOk) {
+            const bouton = form.querySelector('button[type="submit"]');
+            const texteBouton = bouton.textContent;
+
+            if (form.botcheck && form.botcheck.checked) return; // robot détecté
+
+            if (!WEB3FORMS_ACCESS_KEY) {
+                afficherMsg(zoneMsg, false, 'L\u2019envoi en ligne n\u2019est pas encore activé. Appelez-nous au +33 6 19 25 32 61.');
+                return;
+            }
+
+            bouton.disabled = true;
+            bouton.textContent = 'Envoi en cours…';
+            try {
+                const rep = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(Object.assign({
+                        access_key: WEB3FORMS_ACCESS_KEY,
+                        from_name: 'Site de l\u2019AK vigie'
+                    }, donnees))
+                });
+                const resultat = await rep.json();
+                if (!resultat.success) throw new Error(resultat.message || 'Erreur');
+                afficherMsg(zoneMsg, true, messageOk);
+                form.reset();
+                setTimeout(() => { zoneMsg.innerHTML = ''; }, 8000);
+            } catch (err) {
+                console.error(err);
+                afficherMsg(zoneMsg, false, 'Oups, l\u2019envoi n\u2019a pas fonctionné. Réessayez ou appelez-nous au +33 6 19 25 32 61.');
+            } finally {
+                bouton.disabled = false;
+                bouton.textContent = texteBouton;
+            }
+        }
+
         function handleReservation(e) {
             e.preventDefault();
             const form = e.target;
-            const formData = new FormData(form);
+            const d = Object.fromEntries(new FormData(form));
+            const dateFr = d.date ? d.date.split('-').reverse().join('/') : '';
+            const pers = d.personnes === '1' ? '1 personne' : d.personnes + ' personnes';
 
-            const msg = document.getElementById('reservationMsg');
-            msg.innerHTML = '<div class="success-msg">✓ Demande envoyée ! Nous vous confirmerons par téléphone ou email.</div>';
-            form.reset();
-
-            setTimeout(() => {
-                msg.innerHTML = '';
-            }, 4000);
+            envoyerFormulaire(form, document.getElementById('reservationMsg'), {
+                subject: 'Nouvelle réservation : ' + d.nom + ' – ' + dateFr + ' à ' + d.heure + ' – ' + pers,
+                replyto: d.email,
+                'Type': 'Demande de réservation',
+                'Nom': d.nom,
+                'Téléphone': d.telephone,
+                'Email': d.email,
+                'Date': dateFr,
+                'Heure': d.heure,
+                'Nombre de personnes': pers
+            }, '✓ Demande envoyée ! Nous vous confirmerons votre réservation par téléphone ou email.');
         }
 
         function handleContact(e) {
             e.preventDefault();
-            const msg = document.getElementById('contactMsg');
-            msg.innerHTML = '<div class="success-msg">✓ Message envoyé ! Nous vous répondrons très bientôt.</div>';
-            e.target.reset();
+            const form = e.target;
+            const d = Object.fromEntries(new FormData(form));
 
-            setTimeout(() => {
-                msg.innerHTML = '';
-            }, 4000);
+            envoyerFormulaire(form, document.getElementById('contactMsg'), {
+                subject: 'Nouveau message de ' + d.nom + ' (site l\u2019AK vigie)',
+                replyto: d.email,
+                'Type': 'Message du formulaire de contact',
+                'Nom': d.nom,
+                'Email': d.email,
+                'Message': d.message
+            }, '✓ Message envoyé ! Nous vous répondrons très bientôt.');
         }
     </script>
 </body>
