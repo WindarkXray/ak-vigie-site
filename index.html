@@ -3754,7 +3754,7 @@
 
                 <!-- GALERIE PHOTOS MENU -->
                 <div style="margin-top: 60px; padding: 40px 20px; text-align: center;">
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;">
+                    <div id="galerie-menu-dynamique" style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;">
                         <div style="width: 160px; height: 160px; border: 3px solid #d4a956; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 16px rgba(212, 169, 86, 0.25); transition: all 0.3s ease; cursor: pointer;" class="gallery-icon">
                             <img src="photos/burgers-classiques.jpg" alt="Burgers" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
@@ -4335,7 +4335,7 @@
                 <p class="footer-legal"><a onclick="showPage('mentions'); return false;" href="#">Mentions légales &amp; confidentialité</a></p>
                 <p class="footer-alcool">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
                 <div class="footer-credit">
-                    <p>Codé par <strong><a href="tel:0767575284">Benjamin MONTEIRO</a></strong> | 📱 07 67 57 52 84</p>
+                    <p>Codé par <strong><a href="tel:0762575284">Benjamin MONTEIRO</a></strong> | 📱 07 62 57 52 84</p>
                     <p style="margin-top: 8px;">Fait avec ❤️ pour votre bien-être</p>
                 </div>
             </div>
@@ -4350,7 +4350,7 @@
            Si le Sheet est injoignable, le contenu écrit dans ce fichier
            reste affiché (aucun risque de page vide).
            ========================================================= */
-        const LIEN_GOOGLE_SHEET = 'https://docs.google.com/spreadsheets/d/1LHS7z67vdKQ504u63r7Yci67Wduy2IIn0Ryaed3qdlA/edit?gid=1525545620#gid=1525545620'; // <-- coller ici le lien du Google Sheet (tel quel, copié depuis le navigateur)
+        const LIEN_GOOGLE_SHEET = 'https://docs.google.com/spreadsheets/d/1bED5KZCScvT35R9_4Ayosd1kftowLln88bttFTPEpoI/edit?gid=1589682723#gid=1589682723'; // <-- coller ici le lien du Google Sheet (tel quel, copié depuis le navigateur)
         const GOOGLE_SHEET_ID = (LIEN_GOOGLE_SHEET.match(/\/d\/([\w-]+)/) || [])[1] || LIEN_GOOGLE_SHEET.trim();
 
         function sheetUrl(nomOnglet) {
@@ -4464,6 +4464,16 @@
                         </div>`).join('');
         }
 
+        function afficherGalerieMenu(lignes) {
+            const zone = document.getElementById('galerie-menu-dynamique');
+            const photos = lignes.filter(l => (l['photo'] || '').trim());
+            if (!zone || !photos.length) return;
+            zone.innerHTML = photos.map(g => `
+                        <div style="width: 160px; height: 160px; border: 3px solid #d4a956; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 16px rgba(212, 169, 86, 0.25); transition: all 0.3s ease; cursor: pointer;" class="gallery-icon">
+                            <img src="${esc(srcPhoto(g['photo']))}" alt="${esc(g['description'] || 'Photo du menu')}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>`).join('');
+        }
+
         function afficherHoraires(lignes) {
             const zone = document.getElementById('horaires-dynamique');
             if (!zone || !lignes.length) return;
@@ -4477,7 +4487,8 @@
             const taches = [
                 ['Menu', afficherMenu],
                 ['Evenements', afficherEvenements],
-                ['Horaires', afficherHoraires]
+                ['Horaires', afficherHoraires],
+                ['Galerie', afficherGalerieMenu]
             ];
             await Promise.all(taches.map(async ([nom, afficher]) => {
                 try { afficher(await chargerOnglet(nom)); }
